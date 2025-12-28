@@ -29,8 +29,31 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+   //trace: 'on-first-retry',
+
+
+  headless: true,
+  trace: 'on-first-retry',
+  screenshot: 'only-on-failure',
+  video: process.env.CI ? 'on' : 'retain-on-failure',
+  launchOptions: {
+    args: [
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+    ],
   },
+
+
+  },
+
+
+
+
+
+
+
+
 
   /* Configure projects for major browsers */
   projects: [
@@ -77,3 +100,4 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
+
